@@ -3,16 +3,16 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>gulu-demo</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
+        * { 
+            margin: 0; 
+            padding: 0px; 
             box-sizing: border-box;
         }
-        :root {
+        html {
             --button-height: 32px;
             --font-size: 14px;
             --button-bg: white;
@@ -22,14 +22,14 @@
             --border-color: #999;
             --border-color-hover: #666;
         }
+
         #app {
             margin: 20px;
         }
+
         body {
             font-size: var(--font-size);
         }
-    </style>
-    <style>
         .icon {
             width: 1em;
             height: 1em;
@@ -39,15 +39,13 @@
 
 <body>
     <div id="app">
-        <g-button >按钮</g-button>
-        <g-button icon="settings" icon-position="left">按钮</g-button>
+        <g-button>按钮</g-button>
+        <g-button icon="settings">按钮</g-button>
         <g-button icon="settings" icon-position="right">按钮</g-button>
     </div>
 
-    <script src="./node_modules/vue/dist/vue.min.js"></script>
-    <script src="//at.alicdn.com/t/font_826561_nd3bvfywp1b.js"></script>
     <script src="./src/app.js"></script>
-
+    <script src="//at.alicdn.com/t/font_826561_zh7bwbko52p.js"></script>
 </body>
 
 </html>
