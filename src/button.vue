@@ -1,8 +1,6 @@
 <template>
     <button class='g-button' :class="{[`icon-${iconPosition}`]: true}">
-        <svg v-if="icon" class="icon">
-            <use :xlink:href="`#i-${icon}`"></use>
-        </svg>
+        <g-icon class="icon" v-if="icon" :name="icon"></g-icon>
         <div class="content">
             <slot></slot>   
         </div> 
@@ -34,11 +32,12 @@
         justify-content: center; 
         align-items: center;
         vertical-align: middle;
+
         &:hover { border-color: var(--border-color-hover); }
         &:active { background: var(--button-active-bg); }
         &:focus { outline: none; }
-        > .content  { order: 2; }
-        > .icon { order: 1; margin-right: .1em; }
+        > .content  { order: 2; padding-bottom: .1em;}
+        > .icon { order: 1; margin-right: .1em; vertical-align: top; }
        
         &.icon-right {
             > .content { order: 1;}
