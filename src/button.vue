@@ -46,14 +46,14 @@
         &:hover { border-color: var(--border-color-hover); }
         &:active { background: var(--button-active-bg); }
         &:focus { outline: none; }
-        > .content  { order: 2; padding-bottom: .1em;}
+        > .content  { order: 2; padding-bottom: 0.1em;}
         > .icon { order: 1; margin-right: .1em;  }
         &.icon-right {
             > .content { order: 1;}
             > .icon { order: 2; margin-right: 0; margin-left: .1em;}
         }
         .loading {
-            animation: spin 2s infinite linear;
+            animation: spin 1.5s infinite linear;
         }
     }
 </style>
