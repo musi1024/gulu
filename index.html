@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-Hans">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -30,20 +30,35 @@
         body {
             font-size: var(--font-size);
         }
+
+        .box {
+            margin: 20px;
+        }
     </style>
 </head>
 
 <body>
     <div id="app">
-        <g-input></g-input>
-        <g-button>按钮</g-button>
-        <g-button icon="settings" :loading="loading" @click='loading = !loading'>按钮</g-button>
-        <g-button icon="settings" icon-position="right">按钮</g-button>
-        <g-button-group>
+        <div class="box">
+            <g-input value="木四"></g-input>
+            <g-input value="哈哈" disabled></g-input>
+            <g-input value="努努" readonly></g-input>
+        </div>
+        <div class="box">
+            <g-input value="可" error='姓名不能少于两个字'></g-input>
+        </div>
+        <div style="margin: 20px">
+            <g-button>按钮</g-button>
+            <g-button icon="settings" :loading="loading" @click='loading = !loading'>按钮</g-button>
+            <g-button icon="settings" icon-position="right">按钮
+                
+            </g-button>
+            <g-button-group>
             <g-button icon="left">上一页</g-button>
             <g-button>更多</g-button>
             <g-button icon="right" icon-position="right">下一页</g-button>
-        </g-button-group>
+            </g-button-group>
+        </div>
     </div>
 
     <script src="./src/app.js"></script>

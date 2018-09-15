@@ -39,6 +39,7 @@
     .g-button { 
         font-size: var(--font-size); 
         height: var(--button-height);
+        line-height: var(--button-height);
         padding: 0 1em; 
         border-radius: var(--border-radius);
         border: 1px solid var(--border-color);
@@ -51,7 +52,7 @@
         &:hover { border-color: var(--border-color-hover); }
         &:active { background: var(--button-active-bg); }
         &:focus { outline: none; }
-        > .content  { order: 2; padding-bottom: 0.1em;}
+        > .content  { order: 2; }
         > .icon { order: 1; margin-right: .1em;  }
         &.icon-right {
             > .content { order: 1;}
