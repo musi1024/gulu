@@ -38,6 +38,13 @@
 </head>
 
 <body>
+    <style>
+        .demo {
+            height: 50px;
+            background: grey;
+            border: 1px solid red;
+        }
+    </style>
     <div id="app">
         <div class="box">
             <g-input value="木四"></g-input>
@@ -65,27 +72,17 @@
                 <g-button icon="right" icon-position="right">下一页</g-button>
             </g-button-group>
         </div>
-        <g-row gutter='20'>
-            <g-col>1</g-col>
-            <g-col>2</g-col>
-        </g-row>
-        <g-row gutter='20'>
-            <g-col span='2'>2</g-col>
-            <g-col span='22'>22</g-col>
-        </g-row>
-        <g-row gutter='20'>
-            <g-col span='2'></g-col>
-            <g-col span='20' offset='2'></g-col>
-        </g-row>
         <g-row>
-            <g-col span='6'></g-col>
-            <g-col span='6' offset='12'></g-col>
+            <g-col class="demo" span='6'>
+                <g-row align='right'>
+                    <g-col class="demo">1</g-col>
+                    <g-col class="demo">1</g-col>
+                    <g-col class="demo">1</g-col>
+                </g-row>
+            </g-col>
+            <g-col class="demo" span='18'>2</g-col>
         </g-row>
-        <g-row>
-            <g-col span='6'></g-col>
-            <g-col span='6' offset='3'></g-col>
-            <g-col span='6' offset='3'></g-col>
-        </g-row>
+        
     </div>
 
     <script src="./src/app.js"></script>
