@@ -23,30 +23,32 @@
             --border-color-hover: #666;
         }
 
-        #app {
-            margin: 20px;
-        }
-
         body {
             font-size: var(--font-size);
         }
 
-        .box {
-            margin: 20px;
-        }
     </style>
 </head>
 
 <body>
     <style>
         .demo {
-            height: 50px;
-            background: grey;
             border: 1px solid red;
+            min-height: 100px;
         }
     </style>
     <div id="app">
-        <div class="box">
+        <g-layout style="height: 100vh;">
+            <g-sider class="demo">sider</g-sider>
+            <g-layout>  
+                <g-header class="demo">header</g-header>
+                <g-content class="demo">content</g-content>
+                <g-footer class="demo">footer</g-footer>
+            </g-layout>    
+            
+        </g-layout>
+
+        <!-- <div class="box">
             <g-input value="木四"></g-input>
             <g-input value="哈哈" disabled></g-input>
             <g-input value="努努" readonly></g-input>
@@ -75,7 +77,7 @@
         <g-row gutter='20'>
             <g-col span='12'></g-col>
             <g-col span='12'></g-col>
-        </g-row>
+        </g-row> -->
         
     </div>
 
