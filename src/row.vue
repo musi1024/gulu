@@ -29,7 +29,6 @@
         },
         mounted() {
             this.$children.forEach((vm) => {
-                console.log(vm)
                 vm.gutter = this.gutter
             })
         }
