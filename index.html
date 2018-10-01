@@ -32,67 +32,9 @@
 
 <body>
     <style>
-        .demo {
-            border: 1px solid #666;
-            min-height: 100px;
-        }
-        .sider {
-            background: #333;
-            width: 150px;
-        }
-        .sider.slide-enter, .sider.slide-leave-to {
-            margin-left: -150px;
-        }
-        .header {
-            background: #999;
-            height: 100px;
-        }
-        .footer {
-            background: #ccc;
-            height: 50px;
-        }
     </style>
     <div id="app">
-        <g-layout style="height: 100vh;">
-            <g-sider>sider</g-sider>
-            <g-layout>  
-                <g-header>header</g-header>
-                <g-content>content</g-content>
-                <g-footer>footer</g-footer>
-            </g-layout>    
-            
-        </g-layout>
-
-        <!-- <div class="box">
-            <g-input value="木四"></g-input>
-            <g-input value="哈哈" disabled></g-input>
-            <g-input value="努努" readonly></g-input>
-        </div>
-        <div class="box">
-            <g-input value="eeee" @change="inputChange"></g-input>
-        </div>
-        <div class="box">
-            <g-input value="可" error='姓名不能少于两个字'></g-input>
-        </div>
-        <div class="box">
-            <g-input v-model="message"></g-input>
-            <p>{{message}}</p>
-            <button @click="message+=1">+1</button>
-        </div>
-        <div style="margin: 20px">
-            <g-button>按钮</g-button>
-            <g-button icon="settings" :loading="loading" @click='loading = !loading'>按钮</g-button>
-            <g-button icon="settings" icon-position="right">按钮</g-button>
-            <g-button-group>
-                <g-button icon="left">上一页</g-button>
-                <g-button>更多</g-button>
-                <g-button icon="right" icon-position="right">下一页</g-button>
-            </g-button-group>
-        </div>
-        <g-row gutter='20'>
-            <g-col span='12'></g-col>
-            <g-col span='12'></g-col>
-        </g-row> -->
+        <button class="button" @click='showToast'>按钮</button>
         
     </div>
 
