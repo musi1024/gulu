@@ -38,7 +38,7 @@ new Vue({
     },
     methods: {
         showToast() {
-            this.$toast('你的智商需要充值', {
+            this.$toast(`你的智商需要充值${parseInt(Math.random() * 100)}`, {
                 position: 'middle',
                 enableHtml: false,
                 closeButton: {
