@@ -38,7 +38,9 @@ new Vue({
     },
     methods: {
         showToast() {
-            this.$toast('i an toast')
+            this.$toast('<a href="http://www.qq.com">qqqq</a>', {
+                enableHtml: true,
+            })
         }
     }
 })
