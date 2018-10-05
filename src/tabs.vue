@@ -31,16 +31,17 @@
             }
         },
         mounted() {
-            this.forEach((vm) => {
-                if (vm.$options.name === 'GuluTabHead') {
+            this.$children.forEach((vm) => {
+                if (vm.$options.name === 'GuluTabsHead') {
                     vm.$children.forEach((childVm) => {
-                        if (childVm.$options.name === 'GuluTabItme' && childVm.name === this.selected) {
+                        if (childVm.$options.name === 'GuluTabsItem' && 
+                            childVm.name === this.selected) {
                             this.eventBus.$emit('update:selected', this.selected, childVm)
                         }
                     })
                 }
             })
-        }
+        },
     }
 </script>
 <style lang="scss" scoped>
