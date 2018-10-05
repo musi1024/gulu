@@ -21,7 +21,9 @@
             }
         },
         data() {
-            eventBus: new Vue()
+            return {
+                eventBus: new Vue()
+            }
         },
         provide() {
             return {
