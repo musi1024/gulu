@@ -48,6 +48,8 @@ new Vue({
         
     },
     methods: {
-        
+        yyy() {
+            console.log('yyy')        
+        }
     }
 })
