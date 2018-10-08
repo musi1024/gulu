@@ -1,6 +1,6 @@
 <template>
     <div class="popover" @click="clickButton">
-        <div class="content-warpper" v-if="visible">
+        <div class="content-warpper" v-if="visible" ref='content'>
             <slot name="content"></slot>
         </div>
         <span class="button-warpper" ref="button">
@@ -31,10 +31,12 @@
                     }   
                 }
             },
-            clickOther() {
-                this.visible = !this.visible
-                console.log('doc click');   
-                document.removeEventListener('click', this.clickOther)
+            clickOther(e) {
+                if (!this.$refs.content.contains(e.target)) {
+                    this.visible = !this.visible
+                    console.log('doc click');   
+                    document.removeEventListener('click', this.clickOther)
+                }
             }
         }
     }
