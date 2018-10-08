@@ -18,29 +18,38 @@
             }
         },
         methods: {
+            setContentPosition() {
+                document.body.appendChild(this.$refs.contentWrapper)
+                let {
+                    width,
+                    height,
+                    top,
+                    left
+                } = this.$refs.triggerWrapper.getBoundingClientRect()
+                this.$refs.contentWrapper.style.left = left + window.scrollX + 'px'
+                this.$refs.contentWrapper.style.top = top + window.scrollY + 'px'
+            },
             clickButton(e) {
-                if (this.$refs.triggerWrapper.contains(e.target)) {
-                    this.visible = !this.visible
-                    if (this.visible) {
-                        console.log('click button')
-                        this.$nextTick(() => {
-                            document.body.appendChild(this.$refs.contentWrapper)
-                            let { width, height, top, left } = this.$refs.triggerWrapper.getBoundingClientRect()
-                            this.$refs.contentWrapper.style.left = left + window.scrollX + 'px'
-                            this.$refs.contentWrapper.style.top = top + window.scrollY + 'px'
-                            document.addEventListener('click', this.clickOther)
-                        })
+                if (this.$refs.triggerWrapper.contains(e.target)) { 
+                    this.visible = !this.visible               
+                    if (this.visible) {        
+                        this.openPopover()        
                     } else {
-                        document.removeEventListener('click', this.clickOther)
+                        this.closePopover(e)  
                     }
                 }
             },
-            clickOther(e) {
+            openPopover() {
+                this.$nextTick(() => {
+                    this.setContentPosition()
+                    document.addEventListener('click', this.closePopover)
+                })
+            },
+            closePopover(e) {
                 if (!this.$refs.contentWrapper.contains(e.target)) {
-                    this.visible = !this.visible
-                    console.log('doc click');
-                    document.removeEventListener('click', this.clickOther)
-                }
+                    this.visible = false
+                    document.removeEventListener('click', this.closePopover)
+                }  
             }
         }
     }
@@ -51,6 +60,7 @@
         vertical-align: top;
         position: relative;
     }
+
     .content-wrapper {
         position: absolute;
         border: 1px solid red;
