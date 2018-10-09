@@ -105,10 +105,10 @@
                 this.visible = true
                 this.$nextTick(() => {
                     this.setContentPosition()               
-                    document.addEventListener('click', this.xxx)
+                    document.addEventListener('click', this.checkClickTarget)
                 })
             },
-            xxx(e) {
+            checkClickTarget(e) {
                 if (this.$refs.popover &&
                     (this.$refs.popover === e.target || this.$refs.popover.contains(e.target))
                 ) { return }
