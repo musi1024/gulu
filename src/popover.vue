@@ -97,7 +97,6 @@
                     if (this.visible) {
                         this.closePopover(e)                        
                     } else {
-                        console.log('open')
                         this.openPopover()
                     }
                 }
@@ -121,7 +120,6 @@
             closePopover(e) {
                 this.visible = false
                 document.removeEventListener('click', this.closePopover)
-                console.log('close'); 
             }
         }
     }
