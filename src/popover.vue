@@ -1,5 +1,5 @@
 <template>
-    <div class="popover" @click="clickButton">
+    <div class="popover" ref="popover">
         <div class="content-wrapper" v-if="visible" ref='contentWrapper' :class="{[`position-${position}`]: true}">
             <slot name="content"></slot>
         </div>
@@ -24,64 +24,104 @@
                 validator(value) {
                     return ['top', 'bottom', 'left', 'right'].indexOf(value) >= 0
                 }
+            },
+            trigger: {
+                type: String,
+                default: 'click',
+                validator(value) {
+                    return ['click', 'hover'].indexOf(value) >= 0
+                }
+            }
+        },
+        mounted() {
+            if (this.trigger === 'click') {
+                this.$refs.popover.addEventListener('click', this.onClick)
+            } else {
+                this.$refs.popover.addEventListener('mouseenter', this.openPopover)
+                this.$refs.popover.addEventListener('mouseleave', this.closePopover)
+            }
+        },
+        destroyed() {
+            if (this.trigger === 'click') {
+                this.$refs.popover.removeEventListener('click', this.onClick)
+            } else {
+                this.$refs.popover.removeEventListener('mouseenter', this.openPopover)
+                this.$refs.popover.removeEventListener('mouseleave', this.closePopover)
+            }
+        },
+        computed: {
+            openEvent() {
+                if (this.trigger === 'click') {
+                    return 'click'
+                } else {
+                    return 'mouseenter'
+                }
+            },
+            closeEvent() {
+                if (this.trigger === 'click') {
+                    return 'click'
+                } else {
+                    return 'mouseleave'
+                }
             }
         },
         methods: {
             setContentPosition() {
-                const {
-                    contentWrapper,
-                    triggerWrapper
-                } = this.$refs
+                const { contentWrapper, triggerWrapper } = this.$refs
                 document.body.appendChild(contentWrapper)
-                let {
-                    width,
-                    height,
-                    top,
-                    left
-                } = triggerWrapper.getBoundingClientRect()
-                if (this.position === 'top') {
-                    contentWrapper.style.left = left + window.scrollX + 'px'
-                    contentWrapper.style.top = top + window.scrollY + 'px'
-                } else if (this.position === 'bottom') {
-                    contentWrapper.style.left = left + window.scrollX + 'px'
-                    contentWrapper.style.top = top + height + window.scrollY + 'px'
-                } else if (this.position === 'left') {
-                    contentWrapper.style.left = left + window.scrollX + 'px'
-                    let {
-                        height: height2
-                    } = contentWrapper.getBoundingClientRect()
-                    contentWrapper.style.top = top + window.scrollY +
-                        (height - height2) / 2 + 'px'
-                } else if (this.position === 'right') {
-                    contentWrapper.style.left = left + window.scrollX + width + 'px'
-                    let {
-                        height: height2
-                    } = contentWrapper.getBoundingClientRect()
-                    contentWrapper.style.top = top + window.scrollY +
-                        (height - height2) / 2 + 'px'
+                const { width, height, top, left } = triggerWrapper.getBoundingClientRect()
+                const { height: height2 } = contentWrapper.getBoundingClientRect()
+                let positions = {
+                    top: {
+                        top: top + window.scrollY,
+                        left: left + window.scrollX,
+                    },
+                    bottom: {
+                        top: top + height + window.scrollY,
+                        left: left + window.scrollX
+                    },
+                    left: {
+                        top: top + window.scrollY + (height - height2) / 2,
+                        left: left + window.scrollX
+                    },
+                    right: {
+                        top: top + window.scrollY + (height - height2) / 2,
+                        left: left + window.scrollX + width
+                    },
                 }
+                contentWrapper.style.left = positions[this.position].left + 'px'
+                contentWrapper.style.top = positions[this.position].top + 'px'
             },
-            clickButton(e) {
-                if (this.$refs.triggerWrapper.contains(e.target)) {
-                    this.visible = !this.visible
+            onClick(e) {        
+                if (this.$refs.triggerWrapper.contains(e.target)) {                 
                     if (this.visible) {
-                        this.openPopover()
+                        this.closePopover(e)                        
                     } else {
-                        this.closePopover(e)
+                        console.log('open')
+                        this.openPopover()
                     }
                 }
             },
             openPopover() {
+                this.visible = true
                 this.$nextTick(() => {
-                    this.setContentPosition()
-                    document.addEventListener('click', this.closePopover)
+                    this.setContentPosition()               
+                    document.addEventListener('click', this.xxx)
                 })
             },
+            xxx(e) {
+                if (this.$refs.popover &&
+                    (this.$refs.popover === e.target || this.$refs.popover.contains(e.target))
+                ) { return }
+                if (this.$refs.contentWrapper &&
+                    (this.$refs.contentWrapper === e.target || this.$refs.contentWrapper.contains(e.target))
+                ) { return }
+                this.closePopover(e)
+            },
             closePopover(e) {
-                if (!this.$refs.contentWrapper.contains(e.target)) {
-                    this.visible = false
-                    document.removeEventListener('click', this.closePopover)
-                }
+                this.visible = false
+                document.removeEventListener('click', this.closePopover)
+                console.log('close'); 
             }
         }
     }
