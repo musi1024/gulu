@@ -7,7 +7,9 @@
     "start": "parcel index.html --no-cache",
     "dev-test": "karma start",
     "test": "parcel build test/* --no-minify --no-cache && karma start --single-run",
-    "watch": "parcel watch test/* --no-cache"
+    "watch": "parcel watch test/* --no-cache",
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
   },
   "repository": {
     "type": "git",
@@ -24,6 +26,7 @@
   },
   "homepage": "https://github.com/musi1024/gulu#readme",
   "dependencies": {
+    "sass-loader": "^7.1.0",
     "vue": "^2.5.17",
     "vue-hot-reload-api": "^2.3.0"
   },
@@ -41,7 +44,8 @@
     "parcel-bundler": "^1.9.7",
     "sinon": "^6.3.4",
     "sinon-chai": "^3.2.0",
-    "vue-template-compiler": "^2.5.17"
+    "vue-template-compiler": "^2.5.17",
+    "vuepress": "^0.14.4"
   },
   "alias": {
     "vue": "./node_modules/vue/dist/vue.common.js"
